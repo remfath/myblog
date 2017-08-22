@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -14,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Post::all()->toArray();
-        dd($posts);
+        $posts =  Post::paginate(15);
+        return view('admin.index', compact('posts'));
     }
 
     /**
@@ -42,7 +43,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -53,7 +54,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -65,7 +66,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -76,7 +77,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

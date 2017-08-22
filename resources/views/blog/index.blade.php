@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.blog')
 
 @section('content')
     <div class="content-wrapper">
@@ -11,7 +11,7 @@
                     {{ $post->description }}
                 </div>
                 <div class="panel-footer">
-                    <a href="/post/{{ $post->id }}" class="btn btn-primary btn-sm active" role="button">阅读原文</a>
+                    <a href="/blog/{{ $post->slug }}" class="btn btn-primary btn-sm active" role="button">阅读原文</a>
                 </div>
             </div>
         @endforeach

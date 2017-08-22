@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
-Route::get('post/{id}', 'IndexController@content');
+Route::get('/', function () {
+    return redirect('blog');
+});
 
-Route::get('/admin', 'PostController@index');
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
+    Route::get('/', 'BlogController@index')->name('blog');
+    Route::get('{slug}', 'BlogController@content');
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'PostController@index');
+});
 
 Auth::routes();
 
