@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
+Route::get('post/{id}', 'IndexController@content');
+
+Route::get('/admin', 'PostController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
